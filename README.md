@@ -63,4 +63,119 @@
 
 ```
 
-# All the Routes in Details :-
+# Detailed Explanation of all the routes:-
+
+### POST /api/register
+
+- This endpoint allows users to register. It Hashes the password while storing on Database.
+- It requires User Details in a form of json object in request.body
+- Sample User Detail Object -
+
+```
+ {
+  name: String,
+  email: String,
+  password: String,
+  dob: Date,
+  bio: String,
+  posts: [{ type: ObjectId, ref: 'Post' }],
+  friends: [{ type: ObjectId, ref: 'User' }],
+  friendRequests: [{ type: ObjectId, ref: 'User' }]
+ }
+
+```
+
+- If user already exists it returns `{ Message: "You Have Already Registered", success: true, exist: false,}`
+- If signup is succesfull it returns `{ Message: "Registration  Successful", success: true, exist: false, instance }`
+- Else it returns the appropriate error message
+
+---
+
+### POST /api/login
+
+- This endpoint allows users to login. It returns JWT token on login.
+- It requires Email and Password in req.body
+- Sample Object :-
+
+```
+ {
+    "email": "k@gmail.com",
+    "password": "kunal143",
+ }
+
+```
+
+- If the User Doesnt exists it returns ` { Message: "You are not Registered", success: false, exist: false }`
+- If Login Is Successful it returns the UserInfo And A Token " `{ Message: "Login Successful", token, success: true, exist: true, user }`
+- If the Password is wrong `{ Message: "Wrong Credentials" }`
+- In else cases it will return appropriate Error messages
+
+---
+
+### GET /api/users
+
+- It returns all the users
+- status code : `200`
+
+---
+
+### GET /api/users/:id
+
+- It requires the user id in url parameters
+- It returns the particular posts with this posts id
+
+---
+
+### GET /api/posts/:id/
+
+- It requires the post id in url parameters
+- It returns the particular post with this posts id
+
+---
+
+### POST /api/posts
+
+- This endpoint allows the user to Post a new posts
+- It also requires the Authorization token in the Headers.
+- Sample posts
+
+```
+{
+  user: { type: ObjectId, ref: 'User' },
+  text: String,
+  image: String,
+  createdAt: Date,
+  likes: [{ type: ObjectId, ref: 'User' }],
+  comments: [{
+    user: { type: ObjectId, ref: 'User' },
+    text: String,
+    createdAt: Date
+  }]
+}
+
+```
+
+- It returns the Message, New Post has been posted
+- It also returns And The posts object
+
+---
+
+### POST /api/posts/:id/like
+
+- This endpoint allows the user to like a post of another user
+- It requires the posts ID in the url Params.
+- It also requires the Authorization token in the Headers.
+- It returns `{ Message: "New Like Added", Post }`
+
+---
+
+### DELETE /api/posts/:id/comment
+
+- This endpoint allows the user to comment a post of another user
+- It requires the posts ID in the url Params.
+- It also requires the Authorization token in the Headers.
+- `{ Message: "New comment has been posted", Post }`
+
+---
+
+Thankyou for Visiting 💝

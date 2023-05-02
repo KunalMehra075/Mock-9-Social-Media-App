@@ -10,11 +10,11 @@ Kunal
 }
 
 {
-    "name": "Kunal Mehra",
-    "email": "k@gmail.com",
-    "password": "kunal143",
+    "name": "Ankush",
+    "email": "an@gmail.com",
+    "password": "a123",
     "dob": "2004-03-28",
-    "bio": "Hello I am Kunal Mehra",
+    "bio": "Hello I am ankush ",
     "posts": [],
     "friends": [],
     "friendRequests": []
@@ -23,14 +23,14 @@ Kunal
 POST-----------------
 {
     "user": "6450b6743c6f1b464490396a",
-    "text": "Test Post",
+    "text": "Testing A Post",
     "image": "sdfasdfasdf",
     "likes": [],
     "comments": []
 }
 comment-----------------------\
 {
-    
+    text:"Nice image"
 }
 
 

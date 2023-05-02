@@ -2,7 +2,6 @@ const Authentication = require("../Middlewares/Authentication.middleware");
 const PostModel = require("../Models/Post.model");
 const UserModel = require("../Models/User.model");
 
-
 const PostRouter = require("express").Router();
 
 // ! GET ALL POSTS
@@ -51,7 +50,8 @@ PostRouter.patch("/:id", Authentication, async (req, res) => {
     try {
         let Post = await PostModel.findById({ _id: PostID })
         let Creator = Post.user
-        if (Creator !== AuthID) {
+        console.log(Creator, AuthID);
+        if (Creator != AuthID) {
             return res.status(401).json({ Message: "Un-authorized, Cannot update Other people Posts" });
         } else {
             let Updated = await PostModel.findByIdAndUpdate({ _id: PostID }, payload)
@@ -121,7 +121,5 @@ PostRouter.post("/:id/comment", Authentication, async (req, res) => {
         res.status(400).json({ Error: err })
     }
 });
-
-
 
 module.exports = PostRouter;
