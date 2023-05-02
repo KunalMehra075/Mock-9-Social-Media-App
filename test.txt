@@ -1,0 +1,40 @@
+Kunal
+{
+    "email":"k@gmail.com",
+    "password":"kunal@143"
+}
+ Vanshika   
+{
+    "email":"v@gmail.com",
+    "password":"v123"
+}
+
+{
+    "name": "Kunal Mehra",
+    "email": "k@gmail.com",
+    "password": "kunal143",
+    "dob": "2004-03-28",
+    "bio": "Hello I am Kunal Mehra",
+    "posts": [],
+    "friends": [],
+    "friendRequests": []
+}
+
+POST-----------------
+{
+    "user": "6450b6743c6f1b464490396a",
+    "text": "Test Post",
+    "image": "sdfasdfasdf",
+    "likes": [],
+    "comments": []
+}
+comment-----------------------\
+{
+    
+}
+
+
+
+
+
+http://localhost:4500/users/6450b6743c6f1b464490396a/friends/6450c3cf8b1cdde6b53584d9
