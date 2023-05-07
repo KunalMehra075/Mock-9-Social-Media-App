@@ -12,6 +12,6 @@ const PostSchema = mongoose.Schema({
         createdAt: { type: Date, default: new Date().toISOString() }
     }]
 })
-const PostModel = mongoose.model("posts", PostSchema)
+const PostModel = mongoose.model("Post", PostSchema)
 
 module.exports = PostModel;

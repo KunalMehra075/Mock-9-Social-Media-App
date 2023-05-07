@@ -11,6 +11,6 @@ const UserSchema = mongoose.Schema({
     friendRequests: [{ type: mongoose.ObjectId, ref: 'User' }]
 })
 
-const UserModel = mongoose.model("users", UserSchema)
+const UserModel = mongoose.model("User", UserSchema)
 
 module.exports = UserModel;

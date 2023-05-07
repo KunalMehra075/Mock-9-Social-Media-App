@@ -6,7 +6,9 @@ const UserRouter = require("express").Router();
 // ! GET ALL USERS ROUTE
 UserRouter.get("/", async (req, res) => {
     try {
-        const Users = await UserModel.find();
+        const Users = await UserModel.find().populate({ path: "posts", select: ["user", "text", "image"] });
+        // const Users = await UserModel.find().populate("posts");
+        // const Users = await UserModel.find().populate("posts someotherref");
         res.status(200).json({ Message: "Here are all the Users", Users });
     } catch (err) {
         console.log(err);

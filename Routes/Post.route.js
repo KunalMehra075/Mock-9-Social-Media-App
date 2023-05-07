@@ -31,12 +31,11 @@ PostRouter.post("/", Authentication, async (req, res) => {
     let AuthID = req.headers.userID
     post.user = AuthID
     try {
-        let Post = new PostModel(post)
-        await Post.save()
+        let Post = await PostModel.create(post)
         let User = await UserModel.findById({ _id: AuthID })
         User.posts.push(Post._id)
         await UserModel.findByIdAndUpdate({ _id: AuthID }, User)
-        res.status(200).json({ Message: "New Post Created", Post, User });
+        res.status(200).json({ Message: "New Post Created", Post, User: User._id });
     } catch (err) {
         console.log(err);
         res.status(400).json({ Error: err })
@@ -50,7 +49,6 @@ PostRouter.patch("/:id", Authentication, async (req, res) => {
     try {
         let Post = await PostModel.findById({ _id: PostID })
         let Creator = Post.user
-        console.log(Creator, AuthID);
         if (Creator != AuthID) {
             return res.status(401).json({ Message: "Un-authorized, Cannot update Other people Posts" });
         } else {
@@ -73,7 +71,7 @@ PostRouter.delete("/:id", Authentication, async (req, res) => {
         }
         let CreatorID = Post.user
         if (CreatorID != AuthID) {
-            console.log(CreatorID, AuthID);
+
             return res.status(401).json({ Message: "Un-authorized, Cannot Delete Other people Posts" });
         } else {
             let Creator = await UserModel.findById({ _id: AuthID })
